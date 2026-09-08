@@ -1,0 +1,320 @@
+:root{
+    --bg:#14181D;
+    --panel:#1B2129;
+    --panel-2:#20272F;
+    --ink:#ECE9E1;
+    --ink-soft:#9AA3AD;
+    --line:#2A323C;
+    --amber:#D98E3B;
+    --teal:#4FA8A0;
+    --red-dot:#E0645A;
+    --yellow-dot:#E0B84F;
+    --green-dot:#5FAE71;
+    --max-w:760px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:"Space Grotesk", sans-serif;
+    font-size:16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  .mono{font-family:"JetBrains Mono", monospace;}
+
+  a{color:var(--amber);text-decoration:none;border-bottom:1px solid transparent;}
+  a:hover,a:focus{border-bottom-color:var(--amber);}
+  a:focus-visible,button:focus-visible{outline:2px solid var(--amber);outline-offset:3px;}
+
+  ::selection{background:var(--amber);color:#14181D;}
+
+  /* ---------- Terminal frame ---------- */
+  .term{
+    max-width:var(--max-w);
+    margin:40px auto;
+    border:1px solid var(--line);
+    border-radius:8px;
+    overflow:hidden;
+    background:var(--panel);
+    box-shadow:0 0 0 1px rgba(0,0,0,0.2);
+  }
+  .term-bar{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    padding:11px 14px;
+    background:var(--panel-2);
+    border-bottom:1px solid var(--line);
+  }
+  .term-dot{width:10px;height:10px;border-radius:50%;}
+  .term-dot.r{background:var(--red-dot);}
+  .term-dot.y{background:var(--yellow-dot);}
+  .term-dot.g{background:var(--green-dot);}
+  .term-path{
+    margin-left:10px;
+    font-size:0.8rem;
+    color:var(--ink-soft);
+  }
+
+  .wrap{padding:44px 32px 8px;}
+
+  @media (max-width:560px){
+    .term{margin:0;border:none;border-radius:0;}
+    .wrap{padding:32px 20px 8px;}
+  }
+
+  /* ---------- Boot line ---------- */
+  .boot{
+    font-size:0.82rem;
+    color:var(--teal);
+    margin:0 0 22px;
+    min-height:1.3em;
+  }
+  .boot::after{
+    content:"▌";
+    animation:blink 1s step-end infinite;
+  }
+  .boot.done::after{content:"";}
+  @media (prefers-reduced-motion: reduce){
+    .boot::after{animation:none;content:"";}
+  }
+  @keyframes blink{50%{opacity:0;}}
+
+  /* ---------- Hero ---------- */
+  .hero-grid{
+    display:grid;
+    grid-template-columns:1.3fr 1fr;
+    gap:28px;
+    align-items:start;
+    padding-bottom:36px;
+    border-bottom:1px solid var(--line);
+  }
+  @media (max-width:640px){
+    .hero-grid{grid-template-columns:1fr;}
+  }
+
+  h1{
+    font-weight:700;
+    font-size:clamp(1.7rem, 4.4vw, 2.3rem);
+    line-height:1.15;
+    margin:0 0 8px;
+  }
+
+  .role{
+    font-size:0.98rem;
+    color:var(--ink-soft);
+    margin:0 0 18px;
+  }
+  .role .sep{color:var(--amber);margin:0 6px;}
+
+  .contact{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px 18px;
+    font-size:0.86rem;
+    margin-bottom:20px;
+  }
+  .contact a{color:var(--ink);}
+  .contact a:hover{color:var(--amber);}
+
+  .profile{
+    max-width:58ch;
+    color:var(--ink);
+    font-size:1rem;
+  }
+
+  /* ---------- Neofetch panel ---------- */
+  .fetch{
+    background:var(--panel-2);
+    border:1px solid var(--line);
+    border-radius:6px;
+    padding:18px 18px 16px;
+    font-size:0.82rem;
+  }
+  .fetch-head{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:12px;
+    color:var(--amber);
+    font-weight:600;
+  }
+  .fetch-head svg{flex-shrink:0;}
+  .fetch-row{
+    display:grid;
+    grid-template-columns:88px 1fr;
+    gap:2px 10px;
+    padding:3px 0;
+    color:var(--ink-soft);
+  }
+  .fetch-row b{color:var(--ink);font-weight:500;}
+  .fetch-rule{height:1px;background:var(--line);margin:10px 0;}
+
+  /* ---------- Sections ---------- */
+  section{
+    padding:36px 0;
+    border-bottom:1px solid var(--line);
+  }
+  section:last-of-type{border-bottom:none;padding-bottom:44px;}
+
+  h2{
+    font-weight:600;
+    font-size:1.2rem;
+    margin:0 0 24px;
+    display:flex;
+    align-items:baseline;
+    gap:10px;
+  }
+  h2 .tag{
+    font-family:"JetBrains Mono", monospace;
+    font-size:0.72rem;
+    color:var(--ink-soft);
+    font-weight:400;
+  }
+
+  /* ---------- Stack (skills) ---------- */
+  .stack-group{margin-bottom:20px;}
+  .stack-group:last-child{margin-bottom:0;}
+  .stack-label{
+    font-family:"JetBrains Mono", monospace;
+    font-size:0.76rem;
+    color:var(--teal);
+    margin-bottom:10px;
+  }
+  .slots{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+  }
+  .slot{
+    font-family:"JetBrains Mono", monospace;
+    font-size:0.82rem;
+    padding:6px 11px;
+    border:1px solid var(--line);
+    border-radius:4px;
+    color:var(--ink);
+    background:var(--panel-2);
+  }
+
+  /* ---------- Experience (log) ---------- */
+  .log{
+    position:relative;
+    padding-left:26px;
+  }
+  .log::before{
+    content:"";
+    position:absolute;
+    left:5px;
+    top:6px;
+    bottom:6px;
+    width:1px;
+    background:var(--line);
+  }
+  .log-entry{
+    position:relative;
+    margin-bottom:32px;
+  }
+  .log-entry:last-child{margin-bottom:0;}
+  .log-entry::before{
+    content:"";
+    position:absolute;
+    left:-26px;
+    top:6px;
+    width:9px;
+    height:9px;
+    border-radius:50%;
+    background:var(--amber);
+    box-shadow:0 0 0 3px var(--panel);
+  }
+  .log-id{
+    font-family:"JetBrains Mono", monospace;
+    font-size:0.72rem;
+    color:var(--amber);
+    display:block;
+    margin-bottom:4px;
+  }
+  .log-head{
+    display:flex;
+    justify-content:space-between;
+    gap:14px;
+    flex-wrap:wrap;
+    align-items:baseline;
+  }
+  .log-title{font-weight:600;font-size:1.02rem;}
+  .log-org{color:var(--ink-soft);font-weight:400;}
+  .log-dates{
+    font-family:"JetBrains Mono", monospace;
+    font-size:0.76rem;
+    color:var(--ink-soft);
+    white-space:nowrap;
+  }
+  ul.bullets{margin:10px 0 0;padding-left:18px;}
+  ul.bullets li{margin-bottom:7px;}
+  ul.bullets li::marker{color:var(--teal);}
+
+  /* ---------- Achievements (projects) ---------- */
+  .ach{
+    border:1px solid var(--line);
+    border-radius:6px;
+    padding:18px 20px;
+    margin-bottom:14px;
+    background:var(--panel-2);
+  }
+  .ach:last-child{margin-bottom:0;}
+  .ach-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    gap:12px;
+    flex-wrap:wrap;
+    margin-bottom:6px;
+  }
+  .ach-title{font-weight:600;font-size:0.98rem;}
+  .ach-tool{
+    font-family:"JetBrains Mono", monospace;
+    font-size:0.72rem;
+    color:var(--teal);
+    white-space:nowrap;
+  }
+  .ach p{margin:0;color:var(--ink-soft);font-size:0.94rem;}
+
+  /* ---------- Education / languages ---------- */
+  .edu-row{
+    display:flex;
+    justify-content:space-between;
+    gap:14px;
+    flex-wrap:wrap;
+    padding:12px 0;
+    border-top:1px solid var(--line);
+  }
+  .edu-row:first-child{border-top:none;padding-top:0;}
+  .edu-title{font-weight:500;}
+  .edu-org{color:var(--ink-soft);font-size:0.9rem;}
+
+  .lang-row{
+    display:flex;
+    gap:24px;
+    flex-wrap:wrap;
+  }
+  .lang-item .lang-name{font-weight:500;}
+  .lang-item .lang-level{
+    font-family:"JetBrains Mono", monospace;
+    font-size:0.78rem;
+    color:var(--teal);
+  }
+
+  /* ---------- Footer ---------- */
+  footer{
+    padding:0 0 8px;
+    font-family:"JetBrains Mono", monospace;
+    font-size:0.82rem;
+    color:var(--ink-soft);
+  }
+  footer .prompt{color:var(--teal);}
+  footer .prompt2{color:var(--amber);}
